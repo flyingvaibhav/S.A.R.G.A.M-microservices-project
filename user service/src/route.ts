@@ -1,15 +1,17 @@
-import { NextFunction, Request, RequestHandler, Response } from "express";
+import express from "express";
+import {
+  addToPlaylist,
+  loginUser,
+  myProfile,
+  registerUser,
+} from "./controller.js";
+import { isAuth } from "./middleware.js";
 
-const TryCatch = (handler: RequestHandler): RequestHandler => {
-  return async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      await handler(req, res, next);
-    } catch (error: any) {
-      res.status(500).json({
-        message: error.message,
-      });
-    }
-  };
-};
+const router = express.Router();
 
-export default TryCatch;
+router.post("/user/register", registerUser);
+router.post("/user/login", loginUser);
+router.get("/user/me", isAuth, myProfile);
+router.post("/song/:id", isAuth, addToPlaylist);
+
+export default router;
