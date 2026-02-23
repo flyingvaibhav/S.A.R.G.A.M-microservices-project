@@ -13,4 +13,4 @@ router.get("/song/all", getAllsongs);
 router.get("/album/:id", getAllSongsOfAlbum);
 router.get("/song/:id", getSingleSong);
 
-export default router;
+export default router;  
