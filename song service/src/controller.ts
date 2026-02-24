@@ -90,7 +90,7 @@ export const getAllSongsOfAlbum = TryCatch(async (req, res) => {
     });
   }
 
-  console.log("cache miss");
+  console.log("chche miss");
 
   res.json(response);
 });
